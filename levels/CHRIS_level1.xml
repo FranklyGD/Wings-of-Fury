@@ -1,0 +1,167 @@
+<level startTime="0" levelTime="27">
+  <keyFrames>
+    <keyFrame time="0" repeatCount="0" repeatSwitch="0">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="822" y="124" scaleX="-1" scaleY="1">
+            <attribs life="1" speed="7" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-404" ey="267" cx1="0" cy1="0" cx2="-218" cy2="268"/>
+              <bezier sx="-404" sy="267" ex="-977" ey="-1" cx1="-590" cy1="266" cx2="-890.05" cy2="-139"/>
+            </motion>
+          </object>
+          <object type="Wyvern" x="824" y="340" scaleX="-1" scaleY="1">
+            <attribs life="1" speed="7" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-404" ey="-267" cx1="0" cy1="0" cx2="-185" cy2="-267"/>
+              <bezier sx="-404" sy="-267" ex="-977" ey="1" cx1="-623" cy1="-267" cx2="-890.05" cy2="139"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="4" repeatCount="0" repeatSwitch="4">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="-106" y="247" scaleX="1" scaleY="1">
+            <attribs life="3" speed="10" loop="true" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="516" ey="150" cx1="0" cy1="0" cx2="289" cy2="211"/>
+              <bezier sx="516" sy="150" ex="996" ey="-150" cx1="743" cy1="89" cx2="807" cy2="-239"/>
+            </motion>
+          </object>
+          <object type="Wyvern" x="825" y="265" scaleX="-1" scaleY="1">
+            <attribs life="3" speed="15" loop="true" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-297" ey="-168" cx1="0" cy1="0" cx2="-70" cy2="-229"/>
+              <bezier sx="-297" sy="-168" ex="-924" ey="-157" cx1="-524" cy1="-107" cx2="-753" cy2="-17"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="8" repeatCount="0" repeatSwitch="8">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="769" y="-48" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="3" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-836" ey="461" cx1="0" cy1="0" cx2="-670" cy2="520.95"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-42" y="-44" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="3" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="831" ey="413" cx1="0" cy1="0" cx2="652" cy2="513"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-38" y="477" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="3" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="842" ey="-455" cx1="0" cy1="0" cx2="711" cy2="-518"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="770" y="482" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="3" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-832" ey="-419" cx1="0" cy1="0" cx2="-707" cy2="-555"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="12" repeatCount="0" repeatSwitch="12">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="88" y="-60" scaleX="1" scaleY="1">
+            <attribs life="2" speed="15" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="43" ey="131" cx1="0" cy1="0" cx2="-149" cy2="121"/>
+              <bezier sx="43" sy="131" ex="539" ey="322" cx1="235" cy1="141" cx2="567" cy2="209"/>
+              <bezier sx="539" sy="322" ex="213" ey="339" cx1="511" cy1="435" cx2="354" cy2="319"/>
+              <bezier sx="213" sy="339" ex="-162" ey="453" cx1="72" cy1="359" cx2="-34" cy2="511"/>
+            </motion>
+          </object>
+          <object type="Wyvern" x="274" y="-60" scaleX="1" scaleY="1">
+            <attribs life="2" speed="15" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="76" ey="94" cx1="0" cy1="0" cx2="-116" cy2="84"/>
+              <bezier sx="76" sy="94" ex="312" ey="226" cx1="268" cy1="104" cx2="340" cy2="113"/>
+              <bezier sx="312" sy="226" ex="48" ey="226" cx1="284" cy1="339" cx2="189" cy2="206"/>
+              <bezier sx="48" sy="226" ex="-260" ey="382" cx1="-93" cy1="246" cx2="-132" cy2="440"/>
+              <bezier sx="-260" sy="382" ex="-462" ey="277" cx1="-388" cy1="324" cx2="-297" cy2="189"/>
+            </motion>
+          </object>
+          <object type="Wyvern" x="439" y="-60" scaleX="1" scaleY="1">
+            <attribs life="2" speed="15" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="39" ey="97" cx1="0" cy1="0" cx2="-153" cy2="87"/>
+              <bezier sx="39" sy="97" ex="275" ey="229" cx1="231" cy1="107" cx2="303" cy2="116"/>
+              <bezier sx="275" sy="229" ex="37" ey="211" cx1="247" cy1="342" cx2="178" cy2="191"/>
+              <bezier sx="37" sy="211" ex="-260" ey="382" cx1="-104" cy1="231" cx2="-132" cy2="440"/>
+              <bezier sx="-260" sy="382" ex="-525" ey="258" cx1="-388" cy1="324" cx2="-360" cy2="170"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="15" repeatCount="3" repeatSwitch="15">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="WyvernMaster" x="-80" y="359" scaleX="1" scaleY="1">
+            <attribs difficulty="1" life="5" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="5" velY="0"/>
+            <motion/>
+          </object>
+          <object type="WyvernMaster" x="816" y="150" scaleX="-1" scaleY="1">
+            <attribs difficulty="1" life="5" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="-5" velY="0"/>
+            <motion/>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="20" repeatCount="0" repeatSwitch="20">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="-57" y="224" scaleX="1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="3" velY="0"/>
+            <motion/>
+          </object>
+          <object type="GobelinMaster" x="-38" y="317" scaleX="1" scaleY="1">
+            <attribs difficulty="1" attack="true" attackTime="3" attackSpeed="15" life="5" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="6" velY="0"/>
+            <motion/>
+          </object>
+          <object type="GobelinMaster" x="-38" y="137" scaleX="1" scaleY="1">
+            <attribs difficulty="1" attack="true" attackTime="3" attackSpeed="15" life="5" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="6" velY="0"/>
+            <motion/>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="24" repeatCount="4" repeatSwitch="24">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="WyvernMaster" x="823" y="151" scaleX="-1" scaleY="1">
+            <attribs difficulty="2" life="2" speed="6" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-234" ey="128" cx1="0" cy1="0" cx2="-123" cy2="182"/>
+              <bezier sx="-234" sy="128" ex="-386" ey="12" cx1="-345" cy1="74" cx2="-320" cy2="8"/>
+              <bezier sx="-386" sy="12" ex="-570" ey="139" cx1="-452" cy1="16" cx2="-483" cy2="170"/>
+              <bezier sx="-570" sy="139" ex="-724" ey="1" cx1="-657" cy1="108" cx2="-616" cy2="-9"/>
+              <bezier sx="-724" sy="1" ex="-951" ey="39" cx1="-832" cy1="11" cx2="-875" cy2="141"/>
+            </motion>
+          </object>
+          <object type="Wyvern" x="823" y="311" scaleX="-1" scaleY="1">
+            <attribs life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-292" ey="-282" cx1="0" cy1="0" cx2="-159" cy2="-186"/>
+              <bezier sx="-292" sy="-282" ex="-740" ey="-61" cx1="-425" cy1="-378" cx2="-805" cy2="-330"/>
+              <bezier sx="-740" sy="-61" ex="-188" ey="10" cx1="-675" cy1="208" cx2="-315" cy2="100"/>
+              <bezier sx="-188" sy="10" ex="-484" ey="-222" cx1="-61" cy1="-80" cx2="-343" cy2="-288"/>
+              <bezier sx="-484" sy="-222" ex="-1010" ey="-47" cx1="-625" cy1="-156" cx2="-981" cy2="194"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+  </keyFrames>
+</level>

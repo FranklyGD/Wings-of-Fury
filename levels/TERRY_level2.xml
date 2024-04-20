@@ -1,0 +1,515 @@
+<level startTime="0" levelTime="80">
+  <keyFrames>
+    <keyFrame time="1" repeatCount="0" repeatSwitch="1">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="-31" y="48" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="800" ey="-1" cx1="0" cy1="0" cx2="800" cy2="-1"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-32" y="383" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="809" ey="-4" cx1="0" cy1="0" cx2="808" cy2="-3"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="2" repeatCount="0" repeatSwitch="2">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="-33" y="72" scaleX="1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="802" ey="1" cx1="0" cy1="0" cx2="801" cy2="1"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-33" y="364" scaleX="1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="803" ey="0" cx1="0" cy1="0" cx2="803" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="3" repeatCount="0" repeatSwitch="3">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="-32" y="40" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="818" ey="0" cx1="0" cy1="0" cx2="818" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-32" y="394" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="803" ey="0" cx1="0" cy1="0" cx2="803" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="6" repeatCount="0" repeatSwitch="6">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="764" y="400" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-157" ey="0" cx1="0" cy1="0" cx2="-157" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="7" repeatCount="0" repeatSwitch="7">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="764" y="39" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-158" ey="0" cx1="0" cy1="0" cx2="-158" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="9" repeatCount="0" repeatSwitch="9">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="762" y="339" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-156" ey="0" cx1="0" cy1="0" cx2="-156" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="10" repeatCount="0" repeatSwitch="10">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="763" y="100" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-158" ey="1" cx1="0" cy1="0" cx2="-158" cy2="1"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="12" repeatCount="0" repeatSwitch="12">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="762" y="281" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-156" ey="0" cx1="0" cy1="0" cx2="-156" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="13" repeatCount="0" repeatSwitch="13">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="762" y="159" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-157" ey="0" cx1="0" cy1="0" cx2="-157" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="15" repeatCount="0" repeatSwitch="15">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="762" y="219" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-156" ey="0" cx1="0" cy1="0" cx2="-156" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="18" repeatCount="0" repeatSwitch="18">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="787" y="-21" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-241" ey="121" cx1="0" cy1="0" cx2="-151" cy2="123"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="20" repeatCount="0" repeatSwitch="20">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="762" y="213" scaleX="-1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-815" ey="0" cx1="0" cy1="0" cx2="-815" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="21" repeatCount="0" repeatSwitch="21">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="784" y="281" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-239" ey="117" cx1="0" cy1="0" cx2="-115" cy2="120"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="24" repeatCount="0" repeatSwitch="24">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="GobelinMaster" x="766" y="66" scaleX="-1" scaleY="1">
+            <attribs difficulty="1" attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-148" ey="202" cx1="0" cy1="0" cx2="-60" cy2="157"/>
+              <bezier sx="-148" sy="202" ex="-316" ey="130" cx1="-236" cy1="247" cx2="-258" cy2="185"/>
+              <bezier sx="-316" sy="130" ex="-589" ey="149" cx1="-374" cy1="75" cx2="-525" cy2="62"/>
+              <bezier sx="-589" sy="149" ex="-780" ey="114" cx1="-653" cy1="236" cx2="-696" cy2="198"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="25" repeatCount="0" repeatSwitch="25">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="39" y="-38" scaleX="1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="115" ey="512" cx1="0" cy1="0" cx2="23" cy2="510"/>
+              <bezier sx="115" sy="512" ex="249" ey="24" cx1="207" cy1="514" cx2="168" cy2="24"/>
+              <bezier sx="249" sy="24" ex="402" ey="515" cx1="330" cy1="24" cx2="310" cy2="512"/>
+              <bezier sx="402" sy="515" ex="538" ey="18" cx1="494" cy1="518" cx2="461" cy2="18"/>
+              <bezier sx="538" sy="18" ex="702" ey="506" cx1="615" cy1="18" cx2="677.05" cy2="644"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="27" repeatCount="0" repeatSwitch="27">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="GobelinMaster" x="764" y="387" scaleX="-1" scaleY="1">
+            <attribs difficulty="1" attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-558" ey="3" cx1="0" cy1="0" cx2="-558" cy2="3"/>
+              <bezier sx="-558" sy="3" ex="-697" ey="-167" cx1="-558" cy1="3" cx2="-697" cy2="6"/>
+              <bezier sx="-697" sy="-167" ex="-562" ey="-342" cx1="-697" cy1="-340" cx2="-589" cy2="-342"/>
+              <bezier sx="-562" sy="-342" ex="-97" ey="-170" cx1="-535" cy1="-342" cx2="-97" cy2="-373"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="30" repeatCount="0" repeatSwitch="30">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="GobelinMaster" x="-34" y="393" scaleX="1" scaleY="1">
+            <attribs difficulty="1" attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="false" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="685" ey="-114" cx1="0" cy1="0" cx2="680" cy2="35"/>
+              <bezier sx="685" sy="-114" ex="686" ey="-266" cx1="690" cy1="-263" cx2="686" cy2="-266"/>
+              <bezier sx="686" sy="-266" ex="564" ey="-324" cx1="686" cy1="-266" cx2="697" cy2="-314"/>
+              <bezier sx="564" sy="-324" ex="128" ey="-176" cx1="431" cy1="-334" cx2="-58" cy2="-313"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="35" repeatCount="0" repeatSwitch="35">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="-50" y="421" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="817" ey="6" cx1="0" cy1="0" cx2="758" cy2="8"/>
+              <bezier sx="817" sy="6" ex="813" ey="-38" cx1="876" cy1="4" cx2="879" cy2="-36"/>
+              <bezier sx="813" sy="-38" ex="685" ey="-37" cx1="747" cy1="-40" cx2="685" cy2="-37"/>
+            </motion>
+          </object>
+          <object type="Orc" x="-51" y="39" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="817" ey="6" cx1="0" cy1="0" cx2="758" cy2="8"/>
+              <bezier sx="817" sy="6" ex="817" ey="99" cx1="876" cy1="4" cx2="883" cy2="101"/>
+              <bezier sx="817" sy="99" ex="684" ey="98" cx1="751" cy1="97" cx2="684" cy2="98"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="38" repeatCount="0" repeatSwitch="38">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="GobelinMaster" x="698" y="-39" scaleX="-1" scaleY="1">
+            <attribs difficulty="1" attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-214" ey="520" cx1="0" cy1="0" cx2="-138" cy2="816"/>
+              <bezier sx="-214" sy="520" ex="-377" ey="34" cx1="-290" cy1="224" cx2="-267" cy2="-195"/>
+              <bezier sx="-377" sy="34" ex="-519" ey="532" cx1="-487" cy1="263" cx2="-461" cy2="858"/>
+              <bezier sx="-519" sy="532" ex="-761" ey="-19" cx1="-577" cy1="206" cx2="-707" cy2="-49"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="43" repeatCount="0" repeatSwitch="43">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="-203" y="40" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="999" ey="0" cx1="0" cy1="0" cx2="999" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-148" y="129" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="999" ey="0" cx1="0" cy1="0" cx2="999" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-91" y="216" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="999" ey="0" cx1="0" cy1="0" cx2="999" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="-32" y="304" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="999" ey="0" cx1="0" cy1="0" cx2="999" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="48" repeatCount="0" repeatSwitch="48">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="827" y="229" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-922" ey="0" cx1="0" cy1="0" cx2="-922" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="768" y="154" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-922" ey="0" cx1="0" cy1="0" cx2="-922" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="882" y="304" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-922" ey="0" cx1="0" cy1="0" cx2="-922" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="933" y="381" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-997" ey="0" cx1="0" cy1="0" cx2="-997" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="53" repeatCount="0" repeatSwitch="53">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="784" y="240" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-188" ey="0" cx1="0" cy1="0" cx2="-188" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="54" repeatCount="0" repeatSwitch="54">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="763" y="151" scaleX="-1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-810" ey="0" cx1="0" cy1="0" cx2="-810" cy2="0"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="763" y="327" scaleX="-1" scaleY="1">
+            <attribs attack="false" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-810" ey="0" cx1="0" cy1="0" cx2="-810" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="56" repeatCount="0" repeatSwitch="56">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="782" y="379" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-297" ey="1" cx1="0" cy1="0" cx2="-297" cy2="1"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="57" repeatCount="0" repeatSwitch="57">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="700" y="-40" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-719" ey="460" cx1="0" cy1="0" cx2="-408" cy2="460"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="765" y="480" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-788" ey="-445" cx1="0" cy1="0" cx2="-484" cy2="-438"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="58" repeatCount="0" repeatSwitch="58">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="782" y="100" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-356" ey="1" cx1="0" cy1="0" cx2="-356" cy2="1"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="60" repeatCount="0" repeatSwitch="60">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Orc" x="-50" y="229" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="2" attackSpeed="10" attackDamage="0.05" life="3" speed="10" loop="false" removeEnd="false" alignMotion="false" faceMotion="true" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="36" ey="-4" cx1="0" cy1="0" cx2="6" cy2="-10"/>
+              <bezier sx="36" sy="-4" ex="234" ey="171" cx1="66" cy1="2" cx2="97" cy2="169"/>
+              <bezier sx="234" sy="171" ex="801" ey="169" cx1="371" cy1="173" cx2="768" cy2="220"/>
+              <bezier sx="801" sy="169" ex="684" ey="-73" cx1="834" cy1="118" cx2="904" cy2="-72"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="64" repeatCount="0" repeatSwitch="64">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="-119" y="388" scaleX="1" scaleY="1">
+            <attribs life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="1004" ey="-3" cx1="0" cy1="0" cx2="1003" cy2="-3"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="65" repeatCount="0" repeatSwitch="65">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="-82" y="43" scaleX="1" scaleY="1">
+            <attribs life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="944" ey="-1" cx1="0" cy1="0" cx2="943" cy2="0"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="66" repeatCount="0" repeatSwitch="66">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="-79" y="410" scaleX="1" scaleY="1">
+            <attribs life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="918" ey="-1" cx1="0" cy1="0" cx2="918" cy2="-1"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="67" repeatCount="0" repeatSwitch="67">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Wyvern" x="-78" y="37" scaleX="1" scaleY="1">
+            <attribs life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="915" ey="3" cx1="0" cy1="0" cx2="915" cy2="3"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="71" repeatCount="0" repeatSwitch="71">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="33" y="479" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="17" ey="-91" cx1="0" cy1="0" cx2="-16" cy2="-78"/>
+              <bezier sx="17" sy="-91" ex="662" ey="-421" cx1="50" cy1="-104" cx2="454" cy2="-424.95"/>
+              <bezier sx="662" sy="-421" ex="825" ey="-413" cx1="870" cy1="-417.05" cx2="825" cy2="-412"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="703" y="-35" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-17" ey="93" cx1="0" cy1="0" cx2="-1" cy2="80"/>
+              <bezier sx="-17" sy="93" ex="-646" ey="448" cx1="-33" cy1="106" cx2="-496" cy2="446"/>
+              <bezier sx="-646" sy="448" ex="-761" ey="447" cx1="-796" cy1="450" cx2="-761" cy2="447"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+    <keyFrame time="73" repeatCount="0" repeatSwitch="73">
+      <timeSlice time="0" repeatCount="0" repeatSwitch="0">
+        <objects>
+          <object type="Gobelin" x="32" y="-38" scaleX="1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="12" ey="95" cx1="0" cy1="0" cx2="-18" cy2="68"/>
+              <bezier sx="12" sy="95" ex="645" ey="437" cx1="42" cy1="122" cx2="433" cy2="438"/>
+              <bezier sx="645" sy="437" ex="815" ey="437" cx1="857" cy1="436" cx2="815" cy2="437"/>
+            </motion>
+          </object>
+          <object type="Gobelin" x="695" y="483" scaleX="-1" scaleY="1">
+            <attribs attack="true" attackTime="3" attackSpeed="15" life="1" speed="10" loop="false" removeEnd="true" alignMotion="true" faceMotion="false" ease="0.1" velX="0" velY="0"/>
+            <motion>
+              <bezier sx="0" sy="0" ex="-8" ey="-101" cx1="0" cy1="0" cx2="13" cy2="-72"/>
+              <bezier sx="-8" sy="-101" ex="-605" ey="-427" cx1="-29" cy1="-130" cx2="-434" cy2="-428"/>
+              <bezier sx="-605" sy="-427" ex="-812" ey="-428" cx1="-776" cy1="-426" cx2="-812" cy2="-428"/>
+            </motion>
+          </object>
+        </objects>
+      </timeSlice>
+    </keyFrame>
+  </keyFrames>
+</level>

@@ -1,0 +1,61 @@
+<config>
+
+	<levels startLevel="0">
+	
+		<level>CHRIS_level0</level>
+		
+		<level>TERRY_level1</level>
+		
+		<level>CHRIS_level1</level>
+		
+		<level>TERRY_level2</level>
+		
+		<level>CHRIS_level2</level>
+		
+		<level>TERRY_level3</level>
+		
+		<level>CHRIS_level3</level>
+		
+		<level>TERRY_level4</level>
+		
+		<level>TERRY_level5</level>
+		
+		<level>TERRY_level10</level>
+	
+	</levels>
+	
+	<players>
+	
+		<Spyro>
+		
+			<speed>0.5</speed>
+			<gravity>0.22</gravity>
+			<flapStrength>9.0</flapStrength>
+			<bodyFriction>0.7</bodyFriction>
+			<bodyStiffness>0.1</bodyStiffness>
+			<windResistance>0.93</windResistance>
+			
+			<shotHoldMax>20</shotHoldMax>
+			<shotStrength>8</shotStrength>
+			<shotStrengthMax>5</shotStrengthMax>
+			
+		</Spyro>
+		
+		<Cynder>
+		
+			<speed>0.6</speed>
+			<gravity>0.19</gravity>
+			<flapStrength>6.0</flapStrength>
+			<bodyFriction>0.7</bodyFriction>
+			<bodyStiffness>0.1</bodyStiffness>
+			<windResistance>0.93</windResistance>
+			
+			<shotHoldMax>10</shotHoldMax>
+			<shotStrength>5</shotStrength>
+			<shotStrengthMax>4</shotStrengthMax>
+			
+		</Cynder>
+	
+	</players>
+
+</config>
