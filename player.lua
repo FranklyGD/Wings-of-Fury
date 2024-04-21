@@ -1,3 +1,4 @@
+local gfx = love.graphics
 local player = {}
 
 ---@type table<string, PlayerStats>
@@ -5,6 +6,7 @@ local players
 
 local sprites = {}
 sprites.spyro = {}
+sprites.fire_charge = {}
 
 local audio = {}
 audio.flaps = {}
@@ -78,7 +80,9 @@ function player:load(data)
 	players = data.players
 
 	sprites.spyro.flying = load_sprites("sprites/spyroFlying")
-	sprites.spyro.head = love.graphics.newImage("sprites/spyroHead.png")
+	sprites.spyro.head = gfx.newImage("sprites/spyroHead.png")
+	sprites.fire_charge.core = load_sprites("sprites/fireCharge")
+	sprites.fire_charge.glow = gfx.newImage("sprites/fireChargeGlow.png")
 
 	audio.flaps[1] = love.audio.newSource("sounds/flap0.wav", "static")
 	audio.flaps[1]:setVolume(0.5)
@@ -123,6 +127,8 @@ function player:onNewGame(name)
 	self.alt_flap = false
 
 	self.charge = 0.0
+	self.charge_frame = 0
+	self.charge_subframe = 0.0
 end
 
 function player:update(dt)
@@ -134,11 +140,30 @@ function player:update(dt)
 
 		self.frame = self.frame + frames
 
-		if self.frame >= #self.sprites then
+		if self.frame > #self.sprites then
 			self.frame = self.loopframe
 		end
 
 		self.subframe = self.subframe - frames
+	end
+
+	self.charge_subframe = self.subframe + dt * FLASH_FPS
+
+	if self.charge_subframe > 1 then
+		if self.charge_frame < 0 then
+			self.charge_frame = -math.random(#sprites.fire_charge.core)
+			self.charge_subframe = math.fmod(self.charge_subframe, 1)
+		elseif self.charge_frame > 0 then
+			local frames = math.floor(self.charge_subframe)
+
+			self.charge_frame = self.charge_frame + frames
+
+			if self.charge_frame > 13 then
+				self.charge_frame = 0
+			end
+
+			self.charge_subframe = self.charge_subframe - frames
+		end
 	end
 
 	local vel = self.vel
@@ -270,10 +295,12 @@ function player:update(dt)
 	end
 	self.head_rot = math.lerp(head_rot, self.head_rot, math.exp(-dt * 20))
 
+	-- Shooting
 	if love.mouse.isDown(1) then
 		local charge = self.charge
 		if charge == 0 then
 			audio.fire_charge:play()
+			self.charge_frame = -1
 		end
 		
 		charge = charge + dt * FLASH_FPS / self.stats.shotHoldMax
@@ -286,11 +313,13 @@ function player:update(dt)
 		local speed = (self.stats.shotStrength + self.charge * self.stats.shotStrengthMax) * FLASH_FPS
 		local scale = 1 + self.charge * 3
 
+		local cos = math.cos(self.head_rot)
+		local sin = math.sin(self.head_rot)
 		projectiles.new.fireball(
-			rotated_head_pos.x + pos.x,
-			rotated_head_pos.y + pos.y,
-			math.cos(self.head_rot) * speed,
-			math.sin(self.head_rot) * speed,
+			cos * 15 + rotated_head_pos.x + pos.x,
+			sin * 15 + rotated_head_pos.y + pos.y,
+			cos * speed,
+			sin * speed,
 			scale,
 			damage
 		)
@@ -306,27 +335,49 @@ function player:update(dt)
 
 		self.charge = 0
 		self.charged = false
+		self.charge_frame = 1
 	end
 end
 
 function player:draw()
-	love.graphics.push()
-	love.graphics.translate(self.pos.x, self.pos.y)
-	love.graphics.rotate(self.rot)
-	love.graphics.setColor(1, 1, 1)
+	gfx.push()
+	gfx.translate(self.pos.x, self.pos.y)
+	gfx.rotate(self.rot)
+	gfx.setColor(1, 1, 1)
 
-	local sprite = sprites.spyro.head
+	local sprite = self.sprites[self.frame]
+	gfx.draw(sprite, -75, -75)
+	
+	sprite = sprites.spyro.head
 	local head_pos = head_locations[self.frame]
+	gfx.translate(head_pos.x, head_pos.y)
+	gfx.rotate(self.head_rot - self.rot)
 
-	love.graphics.draw(sprite, head_pos.x, head_pos.y, self.head_rot - self.rot, 1, 1, 96, 86)
+	if self.charge_frame ~= 0 then
+		gfx.push()
+		if self.charge_frame < 0 then
+			gfx.setColor(1, 1, 1, self.charge)
+			gfx.translate(15, 0)
+			gfx.scale(self.charge)
+		else
+			local t = (self.charge_frame) / 13
+			gfx.setColor(1, 1, 1, 1-t)
+			gfx.translate(15 + t * 50, 0)
+			gfx.scale(math.lerp(2, 1, t), math.lerp(0.5, 2, (1-t) * (1-t)))
+		end
 
-	sprite = self.sprites[self.frame]
-	love.graphics.draw(sprite, -75, -75)
+		gfx.draw(sprites.fire_charge.glow, 0, 0, 0, 1, 1, 41, 41)
+		gfx.draw(sprites.fire_charge.core[self.charge_frame < 0 and -self.charge_frame or 1], 0, 0, 0, 1, 1, 14, 14)
+		gfx.pop()
+	end
 
-	love.graphics.pop()
+	gfx.setColor(1, 1, 1)
+	gfx.draw(sprite, 0, 0, 0, 1, 1, 96, 86)
+
+	gfx.pop()
 
 	if debug_mode then
-		love.graphics.line(
+		gfx.line(
 			shape_transformed[1].x,
 			shape_transformed[1].y,
 			shape_transformed[2].x,
