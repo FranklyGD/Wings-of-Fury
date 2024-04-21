@@ -9,6 +9,16 @@ local function load()
 	sprites.gobelin.attack = load_sprites("sprites/gobelinAttack")
 end
 
+---@param enemy Enemy
+local function is_in_world(enemy)
+	local pos = enemy.pos
+	local w, h = enemy.sprites[enemy.frame]:getDimensions()
+
+	return
+		pos.x > -w / 2 and pos.x < STAGE_WIDTH + w / 2 and
+		pos.y > -h / 2 and pos.y < WORLD_HEIGHT + h / 2
+end
+
 ---@class Enemy
 ---@field spawn EnemySpawn
 ---@field spawn_vpos number
@@ -122,21 +132,12 @@ local function new_gobelin(spawn_info)
 
 			-- In Bounds
 			if self.in_stage then
-				if
-					(self.motion ~= behaviors.motions.path or self.path_time >= #self.spawn.path) and
-					(
-						pos.x < 0 or pos.x > STAGE_WIDTH or
-						pos.y < 0 or pos.y > WORLD_HEIGHT
-					)
-				then
+				if (self.motion ~= behaviors.motions.path or self.path_time >= #self.spawn.path) and not is_in_world(self) then
 					self.erase = true
 					return
 				end
 			else
-				if
-					pos.x > 0 and pos.x < STAGE_WIDTH and
-					pos.y > 0 and pos.y < WORLD_HEIGHT
-				then
+				if is_in_world(self) then
 					self.in_stage = true
 				end
 			end

@@ -220,23 +220,23 @@ function player:update(dt)
 	pos.y = pos.y + vel.y * dt
 
 	-- Keep in World
-	if vel.x < 0 and pos.x < 0 then
-		pos.x = 0
+	if vel.x < 0 and pos.x < 20 then
+		pos.x = 20
 		vel.x = 0
 	end
 
-	if vel.x > 0 and pos.x > STAGE_WIDTH then
-		pos.x = STAGE_WIDTH
+	if vel.x > 0 and pos.x > STAGE_WIDTH - 50 then
+		pos.x = STAGE_WIDTH - 50
 		vel.x = 0
 	end
 
-	if vel.y < 0 and pos.y < 0 then
-		pos.y = 0
+	if vel.y < 0 and pos.y < 100 then
+		pos.y = 100
 		vel.y = 0
 	end
 
-	if vel.y > 0 and pos.y > WORLD_HEIGHT then
-		pos.y = WORLD_HEIGHT
+	if vel.y > 0 and pos.y > GROUND_HEIGHT - 50 then
+		pos.y = GROUND_HEIGHT - 50
 		vel.y = 0
 	end
 
