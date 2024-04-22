@@ -95,7 +95,7 @@ function Projectile:update(dt)
 		self.subframe = self.subframe - frames
 	end
 
-	self.scale = math.lerp(1, self.scale, math.exp(-dt * 5))
+	self.scale = math.lerp(1, self.scale, math.pow(0.85, dt * FLASH_FPS))
 	self.heat = self.heat * math.exp(-dt * 10)
 end
 

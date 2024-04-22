@@ -6,6 +6,12 @@ local lerp = math.lerp
 function motions.basic(enemy, dt)
 	local pos = enemy.pos
 	local vel = enemy.vel
+
+	local attributes = enemy.spawn.attributes
+	local t = math.pow(1 - attributes.ease, dt * FLASH_FPS)
+	vel.x = lerp(attributes.velX * FLASH_FPS, vel.x, t)
+	vel.y = lerp(attributes.velY * FLASH_FPS, vel.y, t)
+
 	pos.x = pos.x + vel.x * dt
 	pos.y = pos.y + vel.y * dt
 end
@@ -70,9 +76,9 @@ end
 ---@param dt number
 function motions.slow(enemy, dt)
 	local vel = enemy.vel
-	local fraction = math.exp(-dt)
-	vel.x = vel.x * fraction
-	vel.y = vel.y * fraction
+	local t = math.pow(0.98, dt * FLASH_FPS)
+	vel.x = vel.x * t
+	vel.y = vel.y * t
 
 	local pos = enemy.pos
 	pos.x = pos.x + vel.x * dt
@@ -84,9 +90,9 @@ end
 function motions.charge(enemy, dt)
 	local vel = enemy.vel
 	local tvel = enemy.tvel
-	local fraction = math.exp(-dt * 5)
-	vel.x = lerp(tvel.x, vel.x, fraction)
-	vel.y = lerp(tvel.y, vel.y, fraction)
+	local t = math.pow(0.8, dt * FLASH_FPS)
+	vel.x = lerp(tvel.x, vel.x, t)
+	vel.y = lerp(tvel.y, vel.y, t)
 
 	local pos = enemy.pos
 	pos.x = pos.x + vel.x * dt

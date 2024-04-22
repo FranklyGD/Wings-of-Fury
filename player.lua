@@ -170,9 +170,9 @@ function player:update(dt)
 
 	vel.y = vel.y + self.stats.gravity * FLASH_FPS * FLASH_FPS * dt
 
-	local fraction = math.exp(-dt)
-	vel.x = vel.x * fraction --* self.stats.windResistance
-	vel.y = vel.y * fraction --* self.stats.windResistance
+	local t = math.pow(self.stats.windResistance, dt * FLASH_FPS)
+	vel.x = vel.x * t
+	vel.y = vel.y * t
 
 	-- Movement
 	self.frame_speed = 1
@@ -236,7 +236,7 @@ function player:update(dt)
 		self.flapping = false
 	end
 
-	self.angvel = self.angvel * self.stats.bodyStiffness +
+	self.angvel = self.angvel * self.stats.bodyFriction +
 		math.nearest_angle(self.rot, self.trot) * self.stats.bodyStiffness
 	self.rot = self.rot + self.angvel * FLASH_FPS * dt
 

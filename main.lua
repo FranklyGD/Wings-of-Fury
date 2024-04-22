@@ -48,7 +48,7 @@ function love.update(dt)
 	enemies.update(dt)
 	player:update(dt)
 
-	stage_vpos = stage_vpos + ((player.pos.y - STAGE_HEIGHT / 2) - stage_vpos) / (10 * FLASH_FPS * dt)
+	stage_vpos = math.lerp(player.pos.y - STAGE_HEIGHT / 2, stage_vpos, math.pow(0.9, FLASH_FPS * dt))
 	if stage_vpos < 0 then
 		stage_vpos = 0
 	elseif stage_vpos > WORLD_HEIGHT - STAGE_HEIGHT then
