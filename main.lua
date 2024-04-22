@@ -27,6 +27,13 @@ _G.level = require "level"
 _G.player = require "player"
 _G.enemies = require "enemies"
 _G.projectiles = require "projectiles"
+_G.scroller = require "scroller"
+
+local bg1_scroller = scroller:new("sprites/bg1.png", 5)
+local bg2_scroller = scroller:new("sprites/bg2.png", 15)
+local bg3_scroller = scroller:new("sprites/bg3.png", 50)
+local bg4_scroller = scroller:new("sprites/bg4.png", 250)
+local bg5_scroller = scroller:new("sprites/bg5.png", 500)
 
 _G.stage_vpos = 0
 
@@ -54,11 +61,34 @@ function love.update(dt)
 	elseif stage_vpos > WORLD_HEIGHT - STAGE_HEIGHT then
 		stage_vpos = WORLD_HEIGHT - STAGE_HEIGHT
 	end
+
+	bg1_scroller:update(dt)
+	bg2_scroller:update(dt)
+	bg3_scroller:update(dt)
+	bg4_scroller:update(dt)
+	bg5_scroller:update(dt)
+
+	bg1_scroller.pos.y = stage_vpos * 0.05
+	bg2_scroller.pos.y = stage_vpos * 0.1
+	bg3_scroller.pos.y = stage_vpos * 0.3 - 335
+	bg4_scroller.pos.y = stage_vpos * 0.9 - 245
+	bg5_scroller.pos.y = stage_vpos * 1.0 - 490
 end
 
 function love.draw()
+	love.graphics.setColor(1, 1, 1)
+	bg1_scroller:draw()
+	bg2_scroller:draw()
+	bg3_scroller:draw()
+	bg4_scroller:draw()
+	bg5_scroller:draw()
+
 	if debug_mode then
-		love.graphics.setColor(1, 1, 1)
+		love.graphics.setColor(0, 0, 0, 0.5)
+		love.graphics.line(0, WORLD_HEIGHT / 2 - stage_vpos, STAGE_WIDTH, WORLD_HEIGHT / 2 - stage_vpos)
+		love.graphics.rectangle("line", 0, 0, STAGE_WIDTH, WORLD_HEIGHT - stage_vpos)
+
+		love.graphics.setColor(0, 0, 0)
 		love.graphics.print(("FPS: %.02f"):format(love.timer.getFPS()))
 		love.graphics.print(("Level %d"):format(level.current_level), 10, 10)
 		love.graphics.print(("Time Remaining %.02f"):format(level:getInfo().duration - level.time), 10, 20)
@@ -68,10 +98,6 @@ function love.draw()
 
 	love.graphics.push()
 	love.graphics.translate(0, -stage_vpos)
-
-	love.graphics.setColor(1, 1, 1, 0.5)
-	love.graphics.line(0, WORLD_HEIGHT / 2, STAGE_WIDTH, WORLD_HEIGHT / 2)
-	love.graphics.rectangle("line", 0, 0, STAGE_WIDTH, WORLD_HEIGHT)
 
 	enemies.draw()
 	player:draw()

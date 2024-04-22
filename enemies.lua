@@ -272,7 +272,7 @@ local function debug_enemies()
 		love.graphics.print(enemy.spawn.type, 0, 0)
 
 		if enemy.motion == behaviors.motions.path and enemy.path_time < #enemy.spawn.path then
-			love.graphics.setColor(1, 1, 1, 0.2)
+			love.graphics.setColor(0, 0, 0, 0.2)
 			for i, bezier in ipairs(enemy.spawn.path) do
 				for i = 1, 50, 2 do
 					local t = i / 50
