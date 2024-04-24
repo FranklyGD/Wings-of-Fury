@@ -35,11 +35,6 @@ function Projectile:new(x, y, vx, vy, scale, damage)
 			y = vy
 		},
 
-		shape = {
-			{ x = x, y = y },
-			{ x = x, y = y }
-		},
-
 		scale = scale,
 		damage = damage,
 		heat = 1,
@@ -57,14 +52,15 @@ function Projectile:update(dt)
 	pos.x = pos.x + vel.x * dt
 	pos.y = pos.y + vel.y * dt
 
-	self.shape[2].x = self.shape[1].x
-	self.shape[2].y = self.shape[1].y
-	self.shape[1].x = pos.x
-	self.shape[1].y = pos.y
-
+	---@type Vector
+	local tail = {
+		x = 0, y = 0
+	}
 	for i, enemy in ipairs(enemies.pool) do
+		tail.x = pos.x + (enemy.vel.x - vel.x) * dt
+		tail.y = pos.y + (enemy.vel.y - vel.y) * dt
 		for i = 1, #enemy.shape, 2 do
-			if vector.segment_intersect(enemy.shape[i], enemy.shape[i + 1], self.shape[1], self.shape[2]) then
+			if vector.segment_intersect(enemy.shape[i], enemy.shape[i + 1], pos, tail) then
 				enemy:hit(self)
 				self.erase = true
 				return
