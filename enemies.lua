@@ -1,11 +1,40 @@
 local behaviors = require "behaviors"
 
+---@enum EnemyState
+local state = {
+	moving = 1,
+	attacking = 2,
+	dead = 3
+}
+
 local sprites = {}
 sprites.gobelin = {}
+
+local audio = {}
 
 local function load()
 	sprites.gobelin.idle = load_sprites("sprites/gobelinIdle")
 	sprites.gobelin.attack = load_sprites("sprites/gobelinAttack")
+	sprites.gobelin.death = load_sprites("sprites/gobelinDeath")
+	sprites.gobelin.grounded = { love.graphics.newImage("sprites/gobelinGrounded.png") }
+
+	audio.grounded = { i = 1 }
+	audio.grounded[1] = love.audio.newSource("sounds/hitGround.wav", "static")
+	audio.grounded[1]:setVolume(0.5)
+	audio.grounded[2] = love.audio.newSource("sounds/hitGround.wav", "static")
+	audio.grounded[2]:setVolume(0.5)
+
+	audio.attack = { i = 1 }
+	for i = 1, 5 do
+		audio.attack[i] = love.audio.newSource("sounds/gobelinAttack.wav", "static")
+		audio.attack[i]:setVolume(0.5)
+	end
+
+	audio.death = { i = 1 }
+	audio.death[1] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
+	audio.death[1]:setVolume(0.5)
+	audio.death[2] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
+	audio.death[2]:setVolume(0.5)
 end
 
 ---@type Enemy[]
@@ -17,7 +46,8 @@ local enemies = {}
 ---@field in_stage boolean
 ---@field erase boolean
 ---@field spawn_vpos number
----@field motion fun(self:self, dt:number)
+---@field state EnemyState
+---@field motion Motion
 ---@field path_time number
 ---@field pos Vector
 ---@field vel Vector
@@ -45,6 +75,7 @@ function Enemy:new()
 		erase = false,
 
 		spawn_vpos = stage_vpos,
+		state = state.moving,
 		motion = behaviors.motions.basic,
 		path_time = 0,
 
@@ -70,7 +101,7 @@ function Enemy:new()
 		sprites = nil,
 		frame = 1,
 		loopframe = 1,
-		subframe = 0
+		subframe = 0,
 	}
 
 	setmetatable(o, self)
@@ -97,7 +128,7 @@ function Enemy:init(spawn_info)
 		y = spawn_info.attributes.velY * FLASH_FPS
 	}
 
-	for i=1, #self.src_shape do
+	for i = 1, #self.src_shape do
 		self.shape[i] = { x = 0, y = 0 }
 	end
 
@@ -120,27 +151,12 @@ function Enemy:update(dt)
 	end
 
 	-- Attack
-	self.attack_time = self.attack_time + dt
+	if self.state == state.moving then
+		self.attack_time = self.attack_time + dt
 
-	if self.spawn.attributes.attack then
-		if
-			self.sprites ~= sprites.gobelin.attack and
-			self.attack_time > self.spawn.attributes.attackTime
-		then
-			self.motion = behaviors.motions.slow
-
-			self.subframe = 0
-			self.frame = 1
-			self.sprites = sprites.gobelin.attack
-			self.loopframe = 68
-		elseif self.frame == 68 and self.motion ~= behaviors.motions.charge then
-			self.motion = behaviors.motions.charge
-
-			local tx = player.pos.x - pos.x
-			local ty = player.pos.y - pos.y
-			local tlen = math.sqrt(tx * tx + ty * ty)
-			self.tvel.x = tx / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
-			self.tvel.y = ty / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
+		if self.spawn.attributes.attack and self.attack_time > self.spawn.attributes.attackTime then
+			self.state = state.attacking
+			self:attack()
 		end
 	end
 
@@ -159,11 +175,13 @@ function Enemy:update(dt)
 	end
 
 	-- Orientation
-	if self.spawn.attributes.alignMotion then
-		self.rot = math.atan2(self.vel.y, self.vel.x)
-		self.flip = self.vel.x < 0
-	elseif self.spawn.attributes.faceMotion then
-		self.flip = self.vel.x < 0
+	if self.state == state.moving then
+		if self.spawn.attributes.alignMotion then
+			self.rot = math.atan2(self.vel.y, self.vel.x)
+			self.flip = self.vel.x < 0
+		elseif self.spawn.attributes.faceMotion then
+			self.flip = self.vel.x < 0
+		end
 	end
 
 	-- Transform Shape
@@ -187,11 +205,24 @@ end
 
 ---@param projectile Projectile
 function Enemy:hit(projectile)
+	local _health = self.health
 	self.health = self.health - projectile.damage
-	if self.health <= 0 then
-		self.erase = true
+	if self.health <= 0 and _health > 0 then
+		self.motion = behaviors.motions.fall
+		self.state = state.dead
+		self:death()
 	end
 end
+
+function Enemy:death() end
+
+function Enemy:grounded()
+	local i = audio.grounded.i
+	audio.grounded[i]:play()
+	audio.grounded.i = i == 1 and 2 or 1
+end
+
+function Enemy:attack() end
 
 function Enemy:is_in_world()
 	local pos = self.pos
@@ -223,6 +254,29 @@ function Gobelin:new()
 	return o
 end
 
+function Gobelin:update(dt)
+	Enemy.update(self, dt)
+	if self.state == state.attacking and self.frame == 68 and self.motion ~= behaviors.motions.charge then
+		self.motion = behaviors.motions.charge
+
+		local tx = player.pos.x - self.pos.x
+		local ty = player.pos.y - self.pos.y
+		local tlen = math.sqrt(tx * tx + ty * ty)
+		self.tvel.x = tx / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
+		self.tvel.y = ty / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
+
+		local i = audio.attack.i
+		local attack = audio.attack[i]
+		attack:stop()
+		attack:play()
+		i = i + 1
+		if i > #audio.attack then
+			i = 1
+		end
+		audio.attack.i = i
+	end
+end
+
 function Gobelin:draw()
 	local sprite = self.sprites[self.frame]
 	local w, h = sprite:getDimensions()
@@ -239,6 +293,35 @@ function Gobelin:draw()
 
 	love.graphics.draw(sprite, -w / 2, -h / 2)
 	love.graphics.setShader()
+end
+
+function Gobelin:attack()
+	self.motion = behaviors.motions.slow
+
+	self.subframe = 0
+	self.frame = 1
+	self.sprites = sprites.gobelin.attack
+	self.loopframe = 68
+
+	self.rot = 0
+	self.flip = player.pos.x < self.pos.x
+end
+
+function Gobelin:death()
+	self.sprites = sprites.gobelin.death
+	self.frame = 1
+	self.loopframe = 80
+
+	local i = audio.death.i
+	audio.death[i]:play()
+	audio.death.i = i == 1 and 2 or 1
+end
+
+function Gobelin:grounded()
+	Enemy.grounded(self)
+	self.sprites = sprites.gobelin.grounded
+	self.frame = 1
+	self.loopframe = 1
 end
 
 ---@type table<string, Enemy>
@@ -334,8 +417,9 @@ local function draw()
 		love.graphics.push()
 
 		love.graphics.translate(enemy.pos.x, enemy.pos.y)
+
 		love.graphics.rotate(enemy.rot)
-		if enemy.spawn.attributes.alignMotion then
+		if enemy.state == state.moving and enemy.spawn.attributes.alignMotion then
 			love.graphics.scale(1, enemy.flip and -1 or 1)
 		else
 			love.graphics.scale(enemy.flip and -1 or 1, 1)

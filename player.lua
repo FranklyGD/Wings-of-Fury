@@ -64,9 +64,9 @@ local head_locations = {
 
 local shape = {
 	{ x = -60.55, y = 8.45 },
-	{ x = 2.45, y = 12.45 },
-	{ x = 29.45, y = 4.45 },
-	{ x = 5.45, y = -10.55 },
+	{ x = 2.45,   y = 12.45 },
+	{ x = 29.45,  y = 4.45 },
+	{ x = 5.45,   y = -10.55 },
 }
 
 local shape_transformed = {
@@ -88,7 +88,7 @@ function player:load(data)
 	audio.flaps[1]:setVolume(0.5)
 	audio.flaps[2] = love.audio.newSource("sounds/flap1.wav", "static")
 	audio.flaps[2]:setVolume(0.5)
-	audio.fire_shoot = {i = 1}
+	audio.fire_shoot = { i = 1 }
 	for i = 1, 5 do
 		audio.fire_shoot[i] = love.audio.newSource("sounds/shootFlame.wav", "static")
 	end
@@ -229,7 +229,7 @@ function player:update(dt)
 			vel.x = vel.x + math.cos(flap_angle) * flap_speed
 			vel.y = vel.y + math.sin(flap_angle) * flap_speed
 
-			love.audio.play(audio.flaps[self.alt_flap and 2 or 1])
+			audio.flaps[self.alt_flap and 2 or 1]:play()
 			self.alt_flap = not self.alt_flap
 		end
 	else
@@ -280,7 +280,7 @@ function player:update(dt)
 	local head_pos = head_locations[self.frame]
 
 	---@type Vector
-	local rotated_head_pos = {x = 0, y = 0}
+	local rotated_head_pos = { x = 0, y = 0 }
 	vector.rotate(rotated_head_pos, head_pos, self.rot)
 
 	local dir_x, dir_y =
@@ -302,7 +302,7 @@ function player:update(dt)
 			audio.fire_charge:play()
 			self.charge_frame = -1
 		end
-		
+
 		charge = charge + dt * FLASH_FPS / self.stats.shotHoldMax
 		if charge > 1 then
 			charge = 1
@@ -325,13 +325,15 @@ function player:update(dt)
 		)
 		audio.fire_charge:stop()
 
-		local fire_shoot = audio.fire_shoot[audio.fire_shoot.i]
+		local i = audio.fire_shoot.i
+		local fire_shoot = audio.fire_shoot[i]
 		fire_shoot:stop()
 		fire_shoot:play()
-		audio.fire_shoot.i = audio.fire_shoot.i + 1
-		if audio.fire_shoot.i > #audio.fire_shoot then
-			audio.fire_shoot.i = 1
+		i = i + 1
+		if i > #audio.fire_shoot then
+			i = 1
 		end
+		audio.fire_shoot.i = i
 
 		self.charge = 0
 		self.charged = false
@@ -347,7 +349,7 @@ function player:draw()
 
 	local sprite = self.sprites[self.frame]
 	gfx.draw(sprite, -75, -75)
-	
+
 	sprite = sprites.spyro.head
 	local head_pos = head_locations[self.frame]
 	gfx.translate(head_pos.x, head_pos.y)
@@ -361,9 +363,9 @@ function player:draw()
 			gfx.scale(self.charge)
 		else
 			local t = (self.charge_frame) / 13
-			gfx.setColor(1, 1, 1, 1-t)
+			gfx.setColor(1, 1, 1, 1 - t)
 			gfx.translate(15 + t * 50, 0)
-			gfx.scale(math.lerp(2, 1, t), math.lerp(0.5, 2, (1-t) * (1-t)))
+			gfx.scale(math.lerp(2, 1, t), math.lerp(0.5, 2, (1 - t) * (1 - t)))
 		end
 
 		gfx.draw(sprites.fire_charge.glow, 0, 0, 0, 1, 1, 41, 41)

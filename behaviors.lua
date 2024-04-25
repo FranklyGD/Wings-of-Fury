@@ -1,8 +1,9 @@
+---@alias Motion fun(enemy:Enemy, dt:number)
+
+---@type table<string, Motion>
 local motions = {}
 local lerp = math.lerp
 
----@param enemy Enemy
----@param dt number
 function motions.basic(enemy, dt)
 	local pos = enemy.pos
 	local vel = enemy.vel
@@ -16,8 +17,6 @@ function motions.basic(enemy, dt)
 	pos.y = pos.y + vel.y * dt
 end
 
----@param enemy Enemy
----@param dt number
 function motions.path(enemy, dt)
 	local speed = FLASH_FPS * enemy.spawn.attributes.speed / 1000
 	local path_time = enemy.path_time + dt * speed
@@ -72,8 +71,6 @@ function motions.path(enemy, dt)
 	enemy.path_time = path_time
 end
 
----@param enemy Enemy
----@param dt number
 function motions.slow(enemy, dt)
 	local vel = enemy.vel
 	local t = math.pow(0.98, dt * FLASH_FPS)
@@ -85,8 +82,6 @@ function motions.slow(enemy, dt)
 	pos.y = pos.y + vel.y * dt
 end
 
----@param enemy Gobelin
----@param dt number
 function motions.charge(enemy, dt)
 	local vel = enemy.vel
 	local tvel = enemy.tvel
@@ -97,6 +92,36 @@ function motions.charge(enemy, dt)
 	local pos = enemy.pos
 	pos.x = pos.x + vel.x * dt
 	pos.y = pos.y + vel.y * dt
+end
+
+function motions.fall(enemy, dt)
+	local vel = enemy.vel
+	vel.x = vel.x - 0.2 * FLASH_FPS * FLASH_FPS * dt
+	vel.y = vel.y + 0.2 * FLASH_FPS * FLASH_FPS * dt
+
+	local pos = enemy.pos
+	pos.x = pos.x + vel.x * dt
+	pos.y = pos.y + vel.y * dt
+
+	if pos.y > GROUND_HEIGHT then
+		vel.x = -15 * FLASH_FPS
+		vel.y = 0
+
+		pos.y = GROUND_HEIGHT
+
+		enemy.motion = motions.ground
+		enemy:grounded()
+	end
+end
+
+function motions.ground(enemy, dt)
+	local vel = enemy.vel
+	vel.x = -15 * FLASH_FPS
+	vel.y = 0
+
+	local pos = enemy.pos
+	pos.x = pos.x + vel.x * dt
+	pos.y = GROUND_HEIGHT
 end
 
 return {

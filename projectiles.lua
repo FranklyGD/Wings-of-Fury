@@ -1,8 +1,16 @@
 local sprites = {}
 
+local audio = {}
+
 local function load()
 	sprites.fireball = load_sprites("sprites/fireball")
 	sprites.fireballGlow = love.graphics.newImage("sprites/fireballGlow.png")
+
+	audio.hit = {i = 1}
+	audio.hit[1] = love.audio.newSource("sounds/enemyHit.wav", "static")
+	audio.hit[1]:setVolume(0.5)
+	audio.hit[2] = love.audio.newSource("sounds/enemyHit.wav", "static")
+	audio.hit[2]:setVolume(0.5)
 end
 
 ---@type Projectile[]
@@ -57,13 +65,20 @@ function Projectile:update(dt)
 		x = 0, y = 0
 	}
 	for i, enemy in ipairs(enemies.pool) do
-		tail.x = pos.x + (enemy.vel.x - vel.x) * dt
-		tail.y = pos.y + (enemy.vel.y - vel.y) * dt
-		for i = 1, #enemy.shape, 2 do
-			if vector.segment_intersect(enemy.shape[i], enemy.shape[i + 1], pos, tail) then
-				enemy:hit(self)
-				self.erase = true
-				return
+		if enemy.health > 0 then
+			tail.x = pos.x + (enemy.vel.x - vel.x) * dt
+			tail.y = pos.y + (enemy.vel.y - vel.y) * dt
+			for i = 1, #enemy.shape, 2 do
+				if vector.segment_intersect(enemy.shape[i], enemy.shape[i + 1], pos, tail) then
+					enemy:hit(self)
+
+					local i = audio.hit.i
+					love.audio.play(audio.hit[i])
+					audio.hit.i = i == 1 and 2 or 1
+
+					self.erase = true
+					return
+				end
 			end
 		end
 	end
