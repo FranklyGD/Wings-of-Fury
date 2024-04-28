@@ -162,6 +162,16 @@ function Enemy:update(dt)
 
 	self:motion(dt)
 
+	if player.health > 0 and self.health > 0 then
+		for si = 1, #self.shape, 2 do
+			for pi = 1, #player.shape, 2 do
+				if vector.segment_intersect(self.shape[si], self.shape[si + 1], player.shape[pi], player.shape[pi + 1]) then
+					player:hit(0.1)
+				end
+			end
+		end
+	end
+
 	-- In Bounds
 	if self.in_stage then
 		if (self.motion ~= behaviors.motions.path or self.path_time >= #self.spawn.path) and not self:is_in_world() then
@@ -315,6 +325,12 @@ function Gobelin:death()
 	local i = audio.death.i
 	audio.death[i]:play()
 	audio.death.i = i == 1 and 2 or 1
+
+	if self.spawn.type == "GobelinMaster" then
+		score = score + 300
+	else
+		score = score + 200
+	end
 end
 
 function Gobelin:grounded()

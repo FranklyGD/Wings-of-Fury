@@ -12,6 +12,7 @@ local audio = {}
 audio.flaps = {}
 audio.fire_shoot = {}
 audio.fire_charge = {}
+audio.spyro = {}
 
 ---@type Vector[]
 local head_locations = {
@@ -69,17 +70,11 @@ local shape = {
 	{ x = 5.45,   y = -10.55 },
 }
 
-local shape_transformed = {
-	{ x = 0, y = 0 },
-	{ x = 0, y = 0 },
-	{ x = 0, y = 0 },
-	{ x = 0, y = 0 },
-}
-
 function player:load(data)
 	players = data.players
 
 	sprites.spyro.flying = load_sprites("sprites/spyroFlying")
+	sprites.spyro.death = load_sprites("sprites/spyroDeath")
 	sprites.spyro.head = gfx.newImage("sprites/spyroHead.png")
 	sprites.fire_charge.core = load_sprites("sprites/fireCharge")
 	sprites.fire_charge.glow = gfx.newImage("sprites/fireChargeGlow.png")
@@ -93,11 +88,20 @@ function player:load(data)
 		audio.fire_shoot[i] = love.audio.newSource("sounds/shootFlame.wav", "static")
 	end
 	audio.fire_charge = love.audio.newSource("sounds/chargeFlame.wav", "static")
+	audio.spyro.hit = {
+		love.audio.newSource("sounds/spyroHit0.wav", "static"),
+		love.audio.newSource("sounds/spyroHit1.wav", "static")
+	}
+	audio.spyro.death = love.audio.newSource("sounds/spyroDeath.wav", "static")
 end
 
 ---@param name string
 function player:onNewGame(name)
 	self.stats = players[name]
+
+	self.health = 1
+	self.invinsible = 0
+	self.specials = 3
 
 	---@type Vector
 	self.pos = {
@@ -116,7 +120,13 @@ function player:onNewGame(name)
 	self.angvel = 0
 
 	self.head_rot = 0
-
+	---@type Vector[]
+	self.shape = {
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
+	}
 	self.sprites = sprites.spyro.flying
 
 	self.frame = 1
@@ -147,6 +157,17 @@ function player:update(dt)
 		self.subframe = self.subframe - frames
 	end
 
+	local vel = self.vel
+	local pos = self.pos
+	if player.health <= 0 then
+		vel.x = vel.x - 0.2 * FLASH_FPS * FLASH_FPS * dt
+		vel.y = vel.y + 0.2 * FLASH_FPS * FLASH_FPS * dt
+
+		pos.x = pos.x + vel.x * dt
+		pos.y = pos.y + vel.y * dt
+		return
+	end
+
 	self.charge_subframe = self.subframe + dt * FLASH_FPS
 
 	if self.charge_subframe > 1 then
@@ -166,7 +187,11 @@ function player:update(dt)
 		end
 	end
 
-	local vel = self.vel
+	local invinsible = self.invinsible
+	if invinsible > 0 then
+		invinsible = invinsible - dt
+	end
+	self.invinsible = invinsible
 
 	vel.y = vel.y + self.stats.gravity * FLASH_FPS * FLASH_FPS * dt
 
@@ -240,7 +265,6 @@ function player:update(dt)
 		math.nearest_angle(self.rot, self.trot) * self.stats.bodyStiffness
 	self.rot = self.rot + self.angvel * FLASH_FPS * dt
 
-	local pos = self.pos
 	pos.x = pos.x + vel.x * dt
 	pos.y = pos.y + vel.y * dt
 
@@ -267,7 +291,7 @@ function player:update(dt)
 
 	-- Transform Shape
 	for i, p in ipairs(shape) do
-		local point = shape_transformed[i]
+		local point = self.shape[i]
 
 		vector.rotate(point, p, self.rot)
 
@@ -341,56 +365,82 @@ function player:update(dt)
 	end
 end
 
+---@param damage number
+function player:hit(damage)
+	if self.invinsible > 0 then return end
+	self.health = self.health - damage
+	if self.health > 0 then
+		self.invinsible = 1.5
+		audio.spyro.hit[math.random(2)]:play()
+	else
+		self.sprites = sprites.spyro.death
+		self.frame = 1
+		self.loopframe = 75
+		audio.spyro.death:play()
+	end
+end
+
 function player:draw()
-	gfx.push()
-	gfx.translate(self.pos.x, self.pos.y)
-	gfx.rotate(self.rot)
-	gfx.setColor(1, 1, 1)
-
-	local sprite = self.sprites[self.frame]
-	gfx.draw(sprite, -75, -75)
-
-	sprite = sprites.spyro.head
-	local head_pos = head_locations[self.frame]
-	gfx.translate(head_pos.x, head_pos.y)
-	gfx.rotate(self.head_rot - self.rot)
-
-	if self.charge_frame ~= 0 then
+	if self.invinsible <= 0 or math.fmod(math.floor(self.invinsible * 30), 2) == 0 then
 		gfx.push()
-		if self.charge_frame < 0 then
-			gfx.setColor(1, 1, 1, self.charge)
-			gfx.translate(15, 0)
-			gfx.scale(self.charge)
-		else
-			local t = (self.charge_frame) / 13
-			gfx.setColor(1, 1, 1, 1 - t)
-			gfx.translate(15 + t * 50, 0)
-			gfx.scale(math.lerp(2, 1, t), math.lerp(0.5, 2, (1 - t) * (1 - t)))
+		gfx.translate(self.pos.x, self.pos.y)
+		gfx.rotate(self.rot)
+		gfx.setColor(1, 1, 1)
+
+		local sprite = self.sprites[self.frame]
+		gfx.draw(sprite, -75, -75)
+
+		if self.sprites == sprites.spyro.flying then
+			sprite = sprites.spyro.head
+			local head_pos = head_locations[self.frame]
+			gfx.translate(head_pos.x, head_pos.y)
+			gfx.rotate(self.head_rot - self.rot)
+
+			if self.charge_frame ~= 0 then
+				gfx.push()
+				if self.charge_frame < 0 then
+					gfx.setColor(1, 1, 1, self.charge)
+					gfx.translate(15, 0)
+					gfx.scale(self.charge)
+				else
+					local t = (self.charge_frame) / 13
+					gfx.setColor(1, 1, 1, 1 - t)
+					gfx.translate(15 + t * 50, 0)
+					gfx.scale(math.lerp(2, 1, t), math.lerp(0.5, 2, (1 - t) * (1 - t)))
+				end
+
+				gfx.draw(sprites.fire_charge.glow, 0, 0, 0, 1, 1, 41, 41)
+				gfx.draw(sprites.fire_charge.core[self.charge_frame < 0 and -self.charge_frame or 1], 0, 0, 0, 1, 1, 14,
+					14)
+				gfx.pop()
+			end
+
+			gfx.setColor(1, 1, 1)
+			gfx.draw(sprite, 0, 0, 0, 1, 1, 96, 86)
 		end
 
-		gfx.draw(sprites.fire_charge.glow, 0, 0, 0, 1, 1, 41, 41)
-		gfx.draw(sprites.fire_charge.core[self.charge_frame < 0 and -self.charge_frame or 1], 0, 0, 0, 1, 1, 14, 14)
 		gfx.pop()
 	end
 
-	gfx.setColor(1, 1, 1)
-	gfx.draw(sprite, 0, 0, 0, 1, 1, 96, 86)
-
-	gfx.pop()
-
 	if debug_mode then
 		gfx.line(
-			shape_transformed[1].x,
-			shape_transformed[1].y,
-			shape_transformed[2].x,
-			shape_transformed[2].y,
-			shape_transformed[3].x,
-			shape_transformed[3].y,
-			shape_transformed[4].x,
-			shape_transformed[4].y,
-			shape_transformed[1].x,
-			shape_transformed[1].y
+			self.shape[1].x,
+			self.shape[1].y,
+			self.shape[2].x,
+			self.shape[2].y,
+			self.shape[3].x,
+			self.shape[3].y,
+			self.shape[4].x,
+			self.shape[4].y,
+			self.shape[1].x,
+			self.shape[1].y
 		)
+
+		gfx.setColor(1, 0.5, 0)
+		gfx.arc("line", "open", self.pos.x, self.pos.y, 50, math.pi * 2 * self.invinsible / 1.5, 0)
+
+		gfx.setColor(1, 0, 0)
+		gfx.line(self.pos.x - self.health * 30, self.pos.y + 60, self.pos.x + self.health * 30, self.pos.y + 60)
 	end
 end
 
