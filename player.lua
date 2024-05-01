@@ -301,6 +301,8 @@ function player:update(dt)
 
 	-- Rotate Head
 	local mouse_x, mouse_y = love.mouse.getPosition()
+	mouse_x = (mouse_x - screen_offset.x) / screen_scale
+	mouse_y = (mouse_y - screen_offset.y) / screen_scale
 	local head_pos = head_locations[self.frame]
 
 	---@type Vector

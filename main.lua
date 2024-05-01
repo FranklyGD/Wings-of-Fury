@@ -36,6 +36,9 @@ local bg3_scroller = scroller:new("sprites/bg3.png", 50)
 local bg4_scroller = scroller:new("sprites/bg4.png", 250)
 local bg5_scroller = scroller:new("sprites/bg5.png", 500)
 
+_G.screen_offset = {x = 0, y = 0}
+_G.screen_scale = 1
+
 _G.stage_vpos = 0
 _G.score = 0
 
@@ -99,6 +102,10 @@ function love.update(dt)
 end
 
 function love.draw()
+	love.graphics.setScissor(screen_offset.x, screen_offset.y, screen_scale * 730, screen_scale * 450)
+	love.graphics.translate(screen_offset.x, screen_offset.y)
+	love.graphics.scale(screen_scale, screen_scale)
+
 	love.graphics.setColor(1, 1, 1)
 	bg1_scroller:draw()
 	bg2_scroller:draw()
@@ -134,5 +141,18 @@ end
 function love.keypressed(key)
 	if key == "`" then
 		debug_mode = not debug_mode
+	end
+end
+
+function love.resize(w, h)
+	local sw = w / 730
+	local sh = h / 450
+	screen_scale = math.min(sw, sh)
+	if sw > sh then
+		screen_offset.x = math.floor(w / 2 - screen_scale * 730 / 2)
+		screen_offset.y = 0
+	else
+		screen_offset.x = 0
+		screen_offset.y = math.floor(h / 2 - screen_scale * 450 / 2)
 	end
 end
