@@ -36,7 +36,10 @@ local bg3_scroller = scroller:new("sprites/bg3.png", 50)
 local bg4_scroller = scroller:new("sprites/bg4.png", 250)
 local bg5_scroller = scroller:new("sprites/bg5.png", 500)
 
-_G.screen_offset = {x = 0, y = 0}
+---@type Vector
+_G.world_mouse = { x = 0, y = 0 }
+---@type Vector
+_G.screen_offset = { x = 0, y = 0 }
 _G.screen_scale = 1
 
 _G.stage_vpos = 0
@@ -155,4 +158,9 @@ function love.resize(w, h)
 		screen_offset.x = 0
 		screen_offset.y = math.floor(h / 2 - screen_scale * 450 / 2)
 	end
+end
+
+function love.mousemoved(x, y)
+	world_mouse.x = (x - screen_offset.x) / screen_scale
+	world_mouse.y = (y - screen_offset.y) / screen_scale
 end

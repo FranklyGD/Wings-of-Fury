@@ -300,9 +300,6 @@ function player:update(dt)
 	end
 
 	-- Rotate Head
-	local mouse_x, mouse_y = love.mouse.getPosition()
-	mouse_x = (mouse_x - screen_offset.x) / screen_scale
-	mouse_y = (mouse_y - screen_offset.y) / screen_scale
 	local head_pos = head_locations[self.frame]
 
 	---@type Vector
@@ -310,8 +307,8 @@ function player:update(dt)
 	vector.rotate(rotated_head_pos, head_pos, self.rot)
 
 	local dir_x, dir_y =
-		mouse_x - rotated_head_pos.x - pos.x,
-		mouse_y + stage_vpos - rotated_head_pos.y - pos.y
+		world_mouse.x - rotated_head_pos.x - pos.x,
+		world_mouse.y + stage_vpos - rotated_head_pos.y - pos.y
 
 	local head_rot = math.atan2(dir_y, dir_x)
 	if head_rot < -math.pi / 4 + self.rot then
