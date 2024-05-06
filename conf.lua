@@ -8,6 +8,8 @@ function love.conf(t)
     t.window.width = 730
     t.window.height = 450
 
+    t.window.msaa = 4
+
     t.modules.joystick = false
     t.modules.physics = false
     t.modules.video = false
