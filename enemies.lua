@@ -189,7 +189,7 @@ function Enemy:update(dt)
 	if player.health > 0 and self.health > 0 then
 		for si = 1, #self.shape, 2 do
 			for pi = 1, #player.shape, 2 do
-				if vector.segment_intersect(self.shape[si], self.shape[si + 1], player.shape[pi], player.shape[pi + 1]) then
+				if vector.segmentIntersect(self.shape[si], self.shape[si + 1], player.shape[pi], player.shape[pi + 1]) then
 					player:hit(0.1)
 				end
 			end
@@ -198,12 +198,12 @@ function Enemy:update(dt)
 
 	-- In Bounds
 	if self.in_stage then
-		if (self.motion ~= behaviors.motions.path or self.path_time >= #self.spawn.path) and not self:is_in_world() then
+		if (self.motion ~= behaviors.motions.path or self.path_time >= #self.spawn.path) and not self:isInWorld() then
 			self.erase = true
 			return
 		end
 	else
-		if self:is_in_world() then
+		if self:isInWorld() then
 			self.in_stage = true
 		end
 	end
@@ -258,7 +258,7 @@ end
 
 function Enemy:attack() end
 
-function Enemy:is_in_world()
+function Enemy:isInWorld()
 	local pos = self.pos
 	local w, h = self.sprites[self.frame]:getDimensions()
 
@@ -517,14 +517,14 @@ local function debug_enemies()
 				for i = 1, 50, 2 do
 					local t = i / 50
 					local _x, _y =
-						sample_bezier(
+						sampleBezier(
 							bezier.p1.x,
 							bezier.p2.x,
 							bezier.p3.x,
 							bezier.p4.x,
 							t
 						),
-						sample_bezier(
+						sampleBezier(
 							bezier.p1.y,
 							bezier.p2.y,
 							bezier.p3.y,
@@ -534,14 +534,14 @@ local function debug_enemies()
 
 					t = (i + 1) / 50
 					local x, y =
-						sample_bezier(
+						sampleBezier(
 							bezier.p1.x,
 							bezier.p2.x,
 							bezier.p3.x,
 							bezier.p4.x,
 							t
 						),
-						sample_bezier(
+						sampleBezier(
 							bezier.p1.y,
 							bezier.p2.y,
 							bezier.p3.y,

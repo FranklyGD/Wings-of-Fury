@@ -10,7 +10,7 @@ end
 
 local lerp = math.lerp
 
-function math.nearest_angle(from, to)
+function math.nearestangle(from, to)
 	local diff = to - from
 	diff = math.fmod(diff, math.pi * 2)
 
@@ -23,7 +23,7 @@ function math.nearest_angle(from, to)
 	return diff
 end
 
-function _G.sample_bezier(p1, p2, p3, p4, t)
+function _G.sampleBezier(p1, p2, p3, p4, t)
 	local p12 = lerp(p1, p2, t)
 	local p23 = lerp(p2, p3, t)
 	local p34 = lerp(p3, p4, t)
@@ -34,7 +34,7 @@ function _G.sample_bezier(p1, p2, p3, p4, t)
 	return lerp(p13, p24, t)
 end
 
-function _G.sample_bezier_tangent(p1, p2, p3, p4, t)
+function _G.sampleBezierTangent(p1, p2, p3, p4, t)
 	return
 		3 * (p4 - 3 * p3 + 3 * p2 - p1) * t * t
 		+ 6 * (p3 - 2 * p2 + p1) * t

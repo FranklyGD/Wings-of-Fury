@@ -160,7 +160,7 @@ function love.keypressed(key)
 		elseif key == "2" then
 			player.health = 1
 		elseif key == "3" then
-			level:next_level()
+			level:nextLevel()
 		end
 	end
 end

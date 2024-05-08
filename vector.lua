@@ -28,7 +28,7 @@ function vector.rotate(out, vector, angle)
 	out.y = vector.y * cos + vector.x * sin
 end
 
-function vector.segment_intersect(l1, l2, r1, r2)
+function vector.segmentIntersect(l1, l2, r1, r2)
 	local d1 = vector.cross(
 	{x = r1.x - l1.x, y = r1.y - l1.y},
 	{x = r2.x - l1.x, y = r2.y - l1.y}

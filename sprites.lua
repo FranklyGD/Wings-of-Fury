@@ -1,6 +1,6 @@
 ---@param dir string
 ---@return love.Image[]
-local function load_images(dir)
+local function loadImages(dir)
 	---@type string[]
 	local sprite_files = love.filesystem.getDirectoryItems(dir)
 
@@ -14,4 +14,4 @@ local function load_images(dir)
 	return images
 end
 
-return load_images
+return loadImages

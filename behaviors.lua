@@ -35,14 +35,14 @@ function motions.path(enemy, dt)
 
 		local pos = enemy.pos
 		pos.x, pos.y =
-			enemy.spawn.pos.x + sample_bezier(
+			enemy.spawn.pos.x + sampleBezier(
 				bezier.p1.x,
 				bezier.p2.x,
 				bezier.p3.x,
 				bezier.p4.x,
 				t
 			),
-			enemy.spawn_vpos + sample_bezier(
+			enemy.spawn_vpos + sampleBezier(
 				bezier.p1.y,
 				bezier.p2.y,
 				bezier.p3.y,
@@ -52,14 +52,14 @@ function motions.path(enemy, dt)
 
 		local vel = enemy.vel
 		vel.x, vel.y =
-			sample_bezier_tangent(
+			sampleBezierTangent(
 				bezier.p1.x,
 				bezier.p2.x,
 				bezier.p3.x,
 				bezier.p4.x,
 				t
 			) * speed,
-			sample_bezier_tangent(
+			sampleBezierTangent(
 				bezier.p1.y,
 				bezier.p2.y,
 				bezier.p3.y,

@@ -270,7 +270,7 @@ function player:update(dt)
 	end
 
 	self.angvel = self.angvel * self.stats.bodyFriction +
-		math.nearest_angle(self.rot, self.trot) * self.stats.bodyStiffness
+		math.nearestangle(self.rot, self.trot) * self.stats.bodyStiffness
 	self.rot = self.rot + self.angvel * FLASH_FPS * dt
 
 	pos.x = pos.x + vel.x * dt

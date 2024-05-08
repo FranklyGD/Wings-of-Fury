@@ -67,7 +67,7 @@ function Projectile:update(dt)
 		for i = 1, #player.shape, 2 do
 			tail.x = pos.x + (player.vel.x - vel.x) * dt
 			tail.y = pos.y + (player.vel.y - vel.y) * dt
-			if vector.segment_intersect(player.shape[i], player.shape[i + 1], pos, tail) then
+			if vector.segmentIntersect(player.shape[i], player.shape[i + 1], pos, tail) then
 				player:hit(self.damage)
 			end
 		end
@@ -77,7 +77,7 @@ function Projectile:update(dt)
 				tail.x = pos.x + (enemy.vel.x - vel.x) * dt
 				tail.y = pos.y + (enemy.vel.y - vel.y) * dt
 				for i = 1, #enemy.shape, 2 do
-					if vector.segment_intersect(enemy.shape[i], enemy.shape[i + 1], pos, tail) then
+					if vector.segmentIntersect(enemy.shape[i], enemy.shape[i + 1], pos, tail) then
 						enemy:hit(self)
 
 						local i = audio.hit.i

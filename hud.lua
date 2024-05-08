@@ -14,7 +14,7 @@ local health_display_delay = 0
 
 ---@param number number
 ---@return string
-local function comma_seperated_number(number)
+local function makeCommaSeperatedNumber(number)
 	local string_num = ""
 
 	while number >= 1000 do
@@ -106,7 +106,7 @@ function hud:draw()
 		gfx.push()
 		gfx.translate(365 + 183, 24)
 		gfx.printf("Score", score_font, 0, 0, 200, "center", 0, 1, 1, 100)
-		gfx.printf(comma_seperated_number(score), score_font, 0, 20, 200, "center", 0, 1, 1, 100)
+		gfx.printf(makeCommaSeperatedNumber(score), score_font, 0, 20, 200, "center", 0, 1, 1, 100)
 		gfx.pop()
 
 		local display_alpha = math.min(2 * (1.5 - math.abs(level_count_display_time - 1.5)), 1)
