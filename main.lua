@@ -89,14 +89,6 @@ function love.update(dt)
 		bg3_scroller.pos.y = stage_vpos * 0.3 - 335
 		bg4_scroller.pos.y = stage_vpos * 0.9 - 245
 		bg5_scroller.pos.y = stage_vpos * 1.0 - 490
-
-		if debug_mode then
-			if love.keyboard.isDown("1") then
-				player:hit(math.huge)
-			elseif love.keyboard.isDown("2") then
-				player.health = 1
-			end
-		end
 	else
 
 	end
@@ -138,12 +130,38 @@ function love.draw()
 		love.graphics.print(("Time Remaining %.02f"):format(level:getInfo().duration - level.time), 10, 20)
 		love.graphics.print(("Enemies %d"):format(#enemies.pool), 10, 30)
 		love.graphics.print(("Projectiles %d"):format(#projectiles.pool), 10, 40)
+
+		local level_info = level:getInfo()
+		local timeline_cursor_pos = level.time / level_info.duration * 730
+		love.graphics.line(timeline_cursor_pos, STAGE_HEIGHT, timeline_cursor_pos, STAGE_HEIGHT - 10)
+
+		for i, event in ipairs(level_info.timeline) do
+			love.graphics.setColor(1, 1, 0)
+			local event_pos = event.time / level_info.duration * 730
+			love.graphics.line(event_pos, STAGE_HEIGHT, event_pos, STAGE_HEIGHT - 20)
+
+			for i, slice in ipairs(event.slices) do
+				love.graphics.setColor(1, 0, 0)
+				local event_pos = slice.time / level_info.duration * 730 + event_pos
+				love.graphics.line(event_pos, STAGE_HEIGHT, event_pos, STAGE_HEIGHT - 10)
+			end
+		end
 	end
 end
 
 function love.keypressed(key)
 	if key == "`" then
 		debug_mode = not debug_mode
+	end
+
+	if debug_mode then
+		if key == "1" then
+			player:hit(math.huge)
+		elseif key == "2" then
+			player.health = 1
+		elseif key == "3" then
+			level:next_level()
+		end
 	end
 end
 

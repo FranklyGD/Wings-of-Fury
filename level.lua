@@ -21,9 +21,7 @@ function level:update(dt)
 
 	local level_info = levels[self.current_level]
 	if self.time > level_info.duration then
-		self.time = 0
-		self.current_level = self.current_level + 1
-		self.current_event = 1
+		self:next_level()
 	else
 		local event = level_info.timeline[self.current_event]
 		if event and level.time > event.time then
@@ -52,6 +50,16 @@ function level:update(dt)
 			end
 		end
 	end
+end
+
+function level:set_level(num)
+	self.time = 0
+	self.current_level = num
+	self.current_event = 1
+end
+
+function level:next_level()
+	self:set_level(self.current_level + 1)
 end
 
 return level

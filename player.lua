@@ -66,8 +66,12 @@ local head_locations = {
 local shape = {
 	{ x = -60.55, y = 8.45 },
 	{ x = 2.45,   y = 12.45 },
+	{ x = 2.45,   y = 12.45 },
+	{ x = 29.45,  y = 4.45 },
 	{ x = 29.45,  y = 4.45 },
 	{ x = 5.45,   y = -10.55 },
+	{ x = 5.45,   y = -10.55 },
+	{ x = -60.55, y = 8.45 },
 }
 
 function player:load(data)
@@ -122,6 +126,10 @@ function player:onNewGame(name)
 	self.head_rot = 0
 	---@type Vector[]
 	self.shape = {
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
+		{ x = 0, y = 0 },
 		{ x = 0, y = 0 },
 		{ x = 0, y = 0 },
 		{ x = 0, y = 0 },
@@ -427,10 +435,10 @@ function player:draw()
 			self.shape[1].y,
 			self.shape[2].x,
 			self.shape[2].y,
-			self.shape[3].x,
-			self.shape[3].y,
 			self.shape[4].x,
 			self.shape[4].y,
+			self.shape[6].x,
+			self.shape[6].y,
 			self.shape[1].x,
 			self.shape[1].y
 		)

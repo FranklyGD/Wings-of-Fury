@@ -2,6 +2,7 @@ local behaviors = require "behaviors"
 
 ---@enum EnemyState
 local state = {
+	idle = 0,
 	moving = 1,
 	attacking = 2,
 	dead = 3
@@ -9,8 +10,11 @@ local state = {
 
 local sprites = {}
 sprites.gobelin = {}
+sprites.orc = {}
 
 local audio = {}
+audio.gobelin = {}
+audio.orc = {}
 
 local function load()
 	sprites.gobelin.idle = load_sprites("sprites/gobelinIdle")
@@ -18,23 +22,41 @@ local function load()
 	sprites.gobelin.death = load_sprites("sprites/gobelinDeath")
 	sprites.gobelin.grounded = { love.graphics.newImage("sprites/gobelinGrounded.png") }
 
+	sprites.orc.idle = load_sprites("sprites/orcIdle")
+	sprites.orc.attack = load_sprites("sprites/orcAttack")
+	sprites.orc.death = load_sprites("sprites/orcDeath")
+	sprites.orc.hit = load_sprites("sprites/orcHit")
+	sprites.orc.grounded = { love.graphics.newImage("sprites/orcGrounded.png") }
+
 	audio.grounded = { i = 1 }
 	audio.grounded[1] = love.audio.newSource("sounds/hitGround.wav", "static")
 	audio.grounded[1]:setVolume(0.5)
 	audio.grounded[2] = love.audio.newSource("sounds/hitGround.wav", "static")
 	audio.grounded[2]:setVolume(0.5)
 
-	audio.attack = { i = 1 }
+	audio.gobelin.attack = { i = 1 }
 	for i = 1, 5 do
-		audio.attack[i] = love.audio.newSource("sounds/gobelinAttack.wav", "static")
-		audio.attack[i]:setVolume(0.5)
+		audio.gobelin.attack[i] = love.audio.newSource("sounds/gobelinAttack.wav", "static")
+		audio.gobelin.attack[i]:setVolume(0.5)
 	end
 
-	audio.death = { i = 1 }
-	audio.death[1] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
-	audio.death[1]:setVolume(0.5)
-	audio.death[2] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
-	audio.death[2]:setVolume(0.5)
+	audio.gobelin.death = { i = 1 }
+	audio.gobelin.death[1] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
+	audio.gobelin.death[1]:setVolume(0.5)
+	audio.gobelin.death[2] = love.audio.newSource("sounds/gobelinDeath.wav", "static")
+	audio.gobelin.death[2]:setVolume(0.5)
+
+	audio.orc.attack = { i = 1 }
+	for i = 1, 5 do
+		audio.orc.attack[i] = love.audio.newSource("sounds/orcShoot.wav", "static")
+		audio.orc.attack[i]:setVolume(0.5)
+	end
+
+	audio.orc.death = { i = 1 }
+	audio.orc.death[1] = love.audio.newSource("sounds/orcDeath.wav", "static")
+	audio.orc.death[1]:setVolume(0.5)
+	audio.orc.death[2] = love.audio.newSource("sounds/orcDeath.wav", "static")
+	audio.orc.death[2]:setVolume(0.5)
 end
 
 ---@type Enemy[]
@@ -128,6 +150,8 @@ function Enemy:init(spawn_info)
 		y = spawn_info.attributes.velY * FLASH_FPS
 	}
 
+	self.flip = spawn_info.scale.x < 0
+
 	for i = 1, #self.src_shape do
 		self.shape[i] = { x = 0, y = 0 }
 	end
@@ -200,7 +224,7 @@ function Enemy:update(dt)
 
 		vector.rotate(point, p, self.rot)
 
-		point.x = point.x + pos.x
+		point.x = point.x * (self.flip and -1 or 1) + pos.x
 		point.y = point.y + pos.y
 	end
 end
@@ -275,33 +299,36 @@ function Gobelin:update(dt)
 		self.tvel.x = tx / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
 		self.tvel.y = ty / tlen * self.spawn.attributes.attackSpeed * FLASH_FPS
 
-		local i = audio.attack.i
-		local attack = audio.attack[i]
+		local i = audio.gobelin.attack.i
+		local attack = audio.gobelin.attack[i]
 		attack:stop()
 		attack:play()
 		i = i + 1
-		if i > #audio.attack then
+		if i > #audio.gobelin.attack then
 			i = 1
 		end
-		audio.attack.i = i
+		audio.gobelin.attack.i = i
 	end
 end
 
 function Gobelin:draw()
 	local sprite = self.sprites[self.frame]
-	local w, h = sprite:getDimensions()
 
 	if self.spawn.type == "GobelinMaster" then
 		shaders.color_mat:send("matrix",
 			{ -2.37, 0.66, 0.66 },
 			{ 3.1, 0.06, 3.1 },
 			{ 0.27, 0.27, -2.7 },
-			{ 52 / 255, 52 / 255, 52 / 255 }
+			{ 0.2, 0.2, 0.2 }
 		)
 		love.graphics.setShader(shaders.color_mat)
 	end
 
-	love.graphics.draw(sprite, -w / 2, -h / 2)
+	if self.sprites == sprites.gobelin.death then
+		love.graphics.draw(sprite, -56, -103)
+	else
+		love.graphics.draw(sprite, -60, -60)
+	end
 	love.graphics.setShader()
 end
 
@@ -322,9 +349,9 @@ function Gobelin:death()
 	self.frame = 1
 	self.loopframe = 80
 
-	local i = audio.death.i
-	audio.death[i]:play()
-	audio.death.i = i == 1 and 2 or 1
+	local i = audio.gobelin.death.i
+	audio.gobelin.death[i]:play()
+	audio.gobelin.death.i = i == 1 and 2 or 1
 
 	if self.spawn.type == "GobelinMaster" then
 		score = score + 300
@@ -340,10 +367,124 @@ function Gobelin:grounded()
 	self.loopframe = 1
 end
 
+---@class Orc:Enemy
+local Orc = Enemy:new()
+Orc.__index = Orc
+---@type Vector[]
+
+Orc.src_shape = {
+	{ x = -21, y = -58 },
+	{ x = 29,  y = -43 },
+
+	{ x = 29,  y = -43 },
+	{ x = 9,   y = 47 },
+
+	{ x = 9,   y = 47 },
+	{ x = -24, y = 37 },
+
+	{ x = -24, y = 37 },
+	{ x = -21, y = -58 },
+}
+
+function Orc:new()
+	local o = Enemy:new()
+
+	o.sprites = sprites.orc.idle
+
+	setmetatable(o, self)
+	return o
+end
+
+function Orc:update(dt)
+	Enemy.update(self, dt)
+	if self.state == state.attacking then
+		if self.sprites == sprites.orc.attack and self.frame == 18 then
+			self.state = state.idle
+
+			local x_dir = self.flip and -1 or 1
+
+			local cos = math.cos(self.rot)
+			local sin = math.sin(self.rot)
+			projectiles.new.spear(self.pos.x + 34.05 * x_dir, self.pos.y - 28, self.spawn.attributes.attackSpeed * FLASH_FPS * x_dir, 0, 1, self.spawn.attributes.attackDamage)
+
+			local i = audio.orc.attack.i
+			local attack = audio.orc.attack[i]
+			attack:stop()
+			attack:play()
+			i = i + 1
+			if i > #audio.orc.attack then
+				i = 1
+			end
+			audio.orc.attack.i = i
+		end
+	elseif self.state == state.idle then
+		if self.sprites == sprites.orc.attack and self.frame == 39 then
+			self.state = state.moving
+
+			self.attack_time = 0
+
+			self.sprites = sprites.orc.idle
+			self.frame = 1
+			self.subframe = 0
+			self.loopframe = 1
+		end
+	end
+end
+
+function Orc:draw()
+	local sprite = self.sprites[self.frame]
+
+	if self.spawn.type == "OrcMaster" then
+		shaders.color_mat:send("matrix",
+			{ 0.87, 0.45, -1.14 },
+			{ -0.53, 1.96, 1.91 },
+			{ 1.66, -0.41, 1.22 },
+			{ -0.08, -0.08, -0.08 }
+		)
+		love.graphics.setShader(shaders.color_mat)
+	end
+
+	love.graphics.draw(sprite, -110, -110)
+	love.graphics.setShader()
+end
+
+function Orc:attack()
+	self.sprites = sprites.orc.attack
+	self.frame = 1
+	self.subframe = 0
+	self.loopframe = 39
+end
+
+function Orc:death()
+	self.sprites = sprites.orc.death
+	self.frame = 1
+	self.subframe = 0
+	self.loopframe = 36
+
+	local i = audio.orc.death.i
+	audio.orc.death[i]:play()
+	audio.orc.death.i = i == 1 and 2 or 1
+
+	if self.spawn.type == "OrcMaster" then
+		score = score + 525
+	else
+		score = score + 450
+	end
+end
+
+function Orc:grounded()
+	Enemy.grounded(self)
+	self.sprites = sprites.orc.grounded
+	self.frame = 1
+	self.loopframe = 1
+end
+
 ---@type table<string, Enemy>
 local enemy_types = {
 	["Gobelin"] = Gobelin,
-	["GobelinMaster"] = Gobelin
+	["GobelinMaster"] = Gobelin,
+	["Orc"] = Orc,
+	["OrcMaster"] = Orc,
 }
 
 ---@param spawn_info EnemySpawn
